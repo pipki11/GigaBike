@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 520" width="600" height="520" role="img" aria-label="A bicycle up on a repair stand in the GigaBike workshop">
+  <defs>
+    <linearGradient id="bgrs" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#efe9fb"></stop>
+      <stop offset="0.55" stop-color="#f6f2fc"></stop>
+      <stop offset="1" stop-color="#ffffff"></stop>
+    </linearGradient>
+    <radialGradient id="lamprs" cx="0.56" cy="0.3" r="0.55">
+      <stop offset="0" stop-color="#c9b7f5" stop-opacity="0.5"></stop>
+      <stop offset="1" stop-color="#c9b7f5" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="floorrs" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e7e0f4"></stop>
+      <stop offset="1" stop-color="#f3eefb"></stop>
+    </linearGradient>
+
+    <symbol id="bikers" viewBox="0 0 240 150">
+      <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="48" cy="110" r="38"></circle>
+        <circle cx="48" cy="110" r="5" fill="currentColor" stroke="none"></circle>
+        <g stroke-width="1.4" opacity="0.8">
+          <line x1="53" y1="110" x2="84" y2="110"></line>
+          <line x1="51.5" y1="113.5" x2="73.5" y2="135.5"></line>
+          <line x1="48" y1="115" x2="48" y2="146"></line>
+          <line x1="44.5" y1="113.5" x2="22.5" y2="135.5"></line>
+          <line x1="43" y1="110" x2="12" y2="110"></line>
+          <line x1="44.5" y1="106.5" x2="22.5" y2="84.5"></line>
+          <line x1="48" y1="105" x2="48" y2="74"></line>
+          <line x1="51.5" y1="106.5" x2="73.5" y2="84.5"></line>
+        </g>
+        <circle cx="192" cy="110" r="38"></circle>
+        <circle cx="192" cy="110" r="5" fill="currentColor" stroke="none"></circle>
+        <g stroke-width="1.4" opacity="0.8">
+          <line x1="197" y1="110" x2="228" y2="110"></line>
+          <line x1="195.5" y1="113.5" x2="217.5" y2="135.5"></line>
+          <line x1="192" y1="115" x2="192" y2="146"></line>
+          <line x1="188.5" y1="113.5" x2="166.5" y2="135.5"></line>
+          <line x1="187" y1="110" x2="156" y2="110"></line>
+          <line x1="188.5" y1="106.5" x2="166.5" y2="84.5"></line>
+          <line x1="192" y1="105" x2="192" y2="74"></line>
+          <line x1="195.5" y1="106.5" x2="217.5" y2="84.5"></line>
+        </g>
+        <path d="M120 110 L96 50"></path>
+        <path d="M120 110 L178 74"></path>
+        <path d="M96 50 L168 48"></path>
+        <path d="M48 110 L96 50"></path>
+        <path d="M48 110 L120 110"></path>
+        <path d="M178 74 L192 110"></path>
+        <path d="M168 48 L178 74"></path>
+        <circle cx="120" cy="110" r="4" fill="currentColor" stroke="none"></circle>
+        <path d="M120 110 L132 124"></path>
+        <path d="M96 50 L92 41"></path>
+        <path d="M80 41 L106 39"></path>
+        <path d="M168 48 L165 36"></path>
+        <path d="M154 33 L176 38"></path>
+      </g>
+    </symbol>
+  </defs>
+
+  
+  <rect width="600" height="520" fill="url(#bgrs)"></rect>
+  <rect width="600" height="520" fill="url(#lamprs)"></rect>
+  <rect x="0" y="430" width="600" height="90" fill="url(#floorrs)"></rect>
+  <line x1="0" y1="430" x2="600" y2="430" stroke="#d6cbef" stroke-width="2"></line>
+
+  
+  <g style="color:#9a87c4" opacity="0.9">
+    
+    <g transform="translate(118 150)">
+      <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round">
+        <circle cx="0" cy="0" r="38"></circle>
+        <circle cx="0" cy="0" r="15"></circle>
+        <g stroke-width="10" stroke-linecap="round">
+          <line x1="0" y1="-38" x2="0" y2="-52"></line>
+          <line x1="27" y1="-27" x2="36.5" y2="-36.5"></line>
+          <line x1="38" y1="0" x2="52" y2="0"></line>
+          <line x1="27" y1="27" x2="36.5" y2="36.5"></line>
+          <line x1="0" y1="38" x2="0" y2="52"></line>
+          <line x1="-27" y1="27" x2="-36.5" y2="36.5"></line>
+          <line x1="-38" y1="0" x2="-52" y2="0"></line>
+          <line x1="-27" y1="-27" x2="-36.5" y2="-36.5"></line>
+        </g>
+      </g>
+    </g>
+    
+    <g transform="translate(120 330) scale(5) rotate(-26)">
+      <path d="M14.7 6.3a4 4 0 0 0-5.4 5.3L3 18l3 3 6.4-6.3a4 4 0 0 0 5.3-5.4l-2.6 2.6-2.3-.4-.4-2.3 2.6-2.6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+    </g>
+  </g>
+
+  
+  <g stroke="#6b5b8e" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M388 408 L344 456"></path>
+    <path d="M388 408 L432 456"></path>
+    <path d="M388 408 L388 460"></path>
+    <path d="M388 410 L388 250"></path>
+    <path d="M388 264 L406 270"></path>
+  </g>
+  <circle cx="409" cy="271" r="10" fill="#6b5b8e"></circle>
+
+  
+  <ellipse cx="388" cy="438" rx="165" ry="13" fill="#2a1b53" opacity="0.10"></ellipse>
+
+  
+  <use href="#bikers" x="208" y="120" width="396" height="247.5" style="color:#6a2bd6"></use>
+</svg>

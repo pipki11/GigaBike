@@ -1,0 +1,9 @@
+/* Single CSS entry — @import guarantees cascade order (base tokens FIRST),
+   which a list of JS CSS imports does NOT (Next bundles workspace-package
+   CSS last, letting base rules wrongly win over design overrides). */
+@import "@gigabike/ui/base.css";
+@import "../styles/components.css";
+@import "../styles/home.css";
+@import "../styles/pages.css";
+@import "../styles/repair.css";
+@import "../styles/web.css";

@@ -1,0 +1,101 @@
+/* ===========================================================
+   GigaBike web — Next-specific additions.
+   The prototype used a custom <image-slot> drag-drop element for
+   the hero/workshop banners; here we render static illustrations
+   (drop-in real photos later via the admin). These rules mirror
+   the geometry image-slot had in home.css / repair.css.
+   =========================================================== */
+
+.hero-banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 21 / 8;
+  object-fit: cover;
+}
+
+.rep-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 980px) {
+  .hero-banner-img { aspect-ratio: 16 / 9; }
+}
+
+/* ===========================================================
+   Responsive safety net
+   Prevents horizontal overflow on narrow phones. Tested down to
+   320px against the Georgian locale (the widest copy the site
+   ships). Loaded last so these rules win over the page CSS.
+   =========================================================== */
+
+/* 1) CTA labels — .btn is `white-space: nowrap` by design so labels
+   stay on one line on desktop. On phones a long label (e.g. the
+   Georgian "შეკეთებისთვის დაკავშირება") is wider than the viewport
+   and forces a horizontal scrollbar. Let buttons wrap when cramped. */
+@media (max-width: 640px) {
+  .btn { white-space: normal; text-align: center; line-height: 1.25; }
+  .btn-lg { padding: 15px 22px; }
+}
+
+/* 2) Single-column mobile grids — `1fr` resolves to `minmax(auto, 1fr)`,
+   whose `auto` minimum is the child's min-content. A wide child (long
+   word, nowrap pill) can therefore stretch the track past the viewport.
+   `minmax(0, 1fr)` lets the track shrink so children wrap instead. */
+@media (max-width: 980px) {
+  .repair-band-in,
+  .contact-in,
+  .catalog-grid,
+  .product-grid,
+  .rep-hero-in,
+  .rep-book-in { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* 3) Long unbroken words (Georgian compounds) in big display headings
+   must break rather than push the layout wide on the narrowest screens. */
+.hero-title, .rep-hero-title,
+.cat-hero h1, .product-info h1,
+.sec-head h2, .repair-head h2, .contact-copy h2,
+.rep-why-head h2, .rep-form-wrap h2 { overflow-wrap: break-word; }
+
+/* 4) Header CTA — the desktop nav doesn't collapse to a hamburger until
+   ≤900px, but the wider Georgian nav + CTA need ~984px, so the CTA button
+   ("ნახე ველოსიპედები") clips on the right between ~900–980px. The CTA
+   only duplicates the visible "Bikes" nav link, so drop it earlier; the
+   nav alone fits comfortably (~788px in Georgian) down to 900px. */
+@media (max-width: 1024px) {
+  .hdr-cta { display: none; }
+}
+
+/* 5) Header — on very small screens the brand lockup plus the language
+   switcher and menu button don't fit inside the 24px gutter. Tighten
+   the gutter, gap and brand so everything stays on one row. */
+@media (max-width: 400px) {
+  .wrap { padding-inline: 16px; }
+  .hdr-in { gap: 10px; }
+  .brand-mark { width: 34px; height: 34px; }
+  .brand-name { font-size: 1.1rem; }
+  .lang-btn { padding: 9px 10px; gap: 5px; }
+  .icon-btn { width: 40px; height: 40px; }
+}
+
+/* 6) Repair hero stats — the 3-up grid is too narrow for the multi-word
+   Georgian values on phones, so they wrap unevenly (one column on two
+   lines, its neighbour on one) and the labels stop lining up. Stack them
+   as tidy rows instead — bold value on the left, label on the right —
+   which reads cleanly in every locale regardless of text length. */
+@media (max-width: 500px) {
+  .rep-hero-stats { display: flex; flex-direction: column; gap: 0; }
+  .rep-hstat {
+    flex-direction: row; align-items: baseline; justify-content: space-between;
+    gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .rep-hstat:first-child { padding-top: 0; }
+  .rep-hstat:last-child { padding-bottom: 0; border-bottom: none; }
+  .rep-hstat strong { font-size: 1.3rem; }
+  .rep-hstat span { font-size: 0.88rem; text-align: right; }
+}

@@ -1,0 +1,174 @@
+/* ===========================================================
+   GigaBike — design tokens & base styles
+   Conservative · trustworthy · family bike shop
+   Electric violet ink · warm paper · pink energy accents
+   (ported verbatim from the approved design's styles.css)
+   =========================================================== */
+
+:root {
+  /* color — GigaBike brand: electric violet + pink */
+  --bg:          oklch(0.985 0.007 305);
+  --bg-2:        oklch(0.963 0.013 305);
+  --surface:     #ffffff;
+  --ink:         oklch(0.21 0.04 300);
+  --ink-soft:    oklch(0.37 0.035 300);
+  --muted:       oklch(0.55 0.025 300);
+  --line:        oklch(0.90 0.015 305);
+  --line-soft:   oklch(0.94 0.011 305);
+
+  --accent:      oklch(0.52 0.25 293);
+  --accent-deep: oklch(0.42 0.22 293);
+  --accent-ink:  oklch(0.46 0.21 294);
+  --accent-soft: oklch(0.94 0.055 300);
+  --accent-glow: oklch(0.66 0.24 305);
+
+  --copper:      oklch(0.46 0.21 294);   /* alias — small accents/eyebrows */
+  --copper-soft: oklch(0.94 0.055 300);
+  --pink:        oklch(0.62 0.25 352);
+  --pink-soft:   oklch(0.93 0.07 350);
+  --warn:        oklch(0.62 0.25 352);
+
+  /* type — Latin serif/sans; Georgian glyphs fall through to Noto.
+     All families are injected by next/font as CSS variables (see apps/web/app/fonts.ts).
+     Each var() expands to one or more quoted family names, so chaining them builds a
+     valid font stack where Latin uses the grotesk/serif and Georgian falls to Noto. */
+  --font-display: var(--font-source-serif), var(--font-noto-serif-georgian), Georgia, serif;
+  --font-body:    var(--font-hanken), var(--font-noto-sans-georgian), system-ui, sans-serif;
+  --font-mono:    var(--font-hanken), var(--font-noto-sans-georgian), system-ui, sans-serif;
+
+  /* geometry — calmer, squarer */
+  --r-sm: 6px;
+  --r:    10px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+  --shadow-sm: 0 1px 2px oklch(0.3 0.04 300 / 0.07), 0 2px 6px oklch(0.3 0.04 300 / 0.05);
+  --shadow:    0 2px 8px oklch(0.3 0.04 300 / 0.08), 0 10px 26px oklch(0.3 0.04 300 / 0.07);
+  --shadow-lg: 0 6px 18px oklch(0.3 0.04 300 / 0.10), 0 24px 54px oklch(0.3 0.04 300 / 0.09);
+
+  --maxw: 1200px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.58;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+button, input, select, textarea { font-family: inherit; color: inherit; }
+button { cursor: pointer; border: none; background: none; }
+
+/* ---------- Georgian script refinements ---------- */
+html[lang="ka"] body { line-height: 1.62; }
+html[lang="ka"] h1, html[lang="ka"] h2, html[lang="ka"] h3, html[lang="ka"] h4, html[lang="ka"] .display { letter-spacing: 0; line-height: 1.18; }
+html[lang="ka"] .hero-title, html[lang="ka"] .rep-hero-title { letter-spacing: 0; line-height: 1.16; }
+html[lang="ka"] .mono, html[lang="ka"] .eyebrow, html[lang="ka"] .chip, html[lang="ka"] .hero-kicker,
+html[lang="ka"] .filter-label, html[lang="ka"] .cr-label, html[lang="ka"] .rf-field > span,
+html[lang="ka"] .ftr-col h4 { letter-spacing: 0.02em; text-transform: none; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+::selection { background: var(--accent-soft); color: var(--ink); }
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 24px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  font-family: var(--font-body);
+  font-weight: 600; font-size: 0.95rem;
+  padding: 13px 24px; border-radius: var(--r-sm);
+  transition: background 0.25s, color 0.25s, border-color 0.25s, box-shadow 0.35s var(--ease), transform 0.35s var(--ease);
+  white-space: nowrap; line-height: 1;
+}
+.btn svg { width: 18px; height: 18px; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-deep); box-shadow: var(--shadow); transform: translateY(-1px); }
+.btn-ink { background: var(--ink); color: var(--bg); }
+.btn-ink:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn-ghost:hover { border-color: var(--ink); background: var(--surface); }
+.btn-soft { background: var(--accent-soft); color: var(--accent-ink); }
+.btn-soft:hover { background: oklch(0.9 0.02 255); }
+.btn-sm { padding: 10px 17px; font-size: 0.86rem; }
+.btn-lg { padding: 16px 30px; font-size: 1rem; }
+
+/* ---------- chips / badges ---------- */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-body); font-weight: 600;
+  font-size: 0.67rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 4px;
+  background: var(--surface); color: var(--ink-soft); border: 1px solid var(--line);
+}
+.chip-accent { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; }
+.chip-new { background: var(--ink); color: var(--bg); border-color: transparent; }
+.chip-used { background: var(--surface); color: var(--ink-soft); }
+
+/* ---------- placeholder image (neutral, quiet) ---------- */
+.ph {
+  position: relative; overflow: hidden;
+  background: linear-gradient(165deg, oklch(0.95 0.02 300), oklch(0.91 0.03 300));
+  display: grid; place-items: center;
+}
+.ph::before {
+  content: "";
+  position: absolute; inset: 10px;
+  border: 1px dashed oklch(0.82 0.03 300);
+  border-radius: inherit;
+  pointer-events: none;
+}
+.ph::after {
+  content: attr(data-label);
+  font-family: var(--font-body); font-weight: 600;
+  font-size: 0.64rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: oklch(0.5 0.06 300);
+  background: oklch(1 0 0 / 0.7); padding: 6px 12px; border-radius: 4px;
+}
+
+/* ---------- reveal on scroll ----------
+   Transform-only so a paused compositor never leaves content invisible. */
+.reveal { transform: translateY(22px); transition: transform 0.8s var(--ease); }
+.reveal.in { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- page transition ---------- */
+.page { animation: pageIn 0.5s var(--ease); }
+@keyframes pageIn { from { transform: translateY(10px); } to { transform: none; } }
+
+/* utility */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-body); font-weight: 600;
+  font-size: 0.73rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--copper);
+}
+.eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--copper); opacity: 0.55; }
+.section { padding-block: clamp(56px, 9vw, 104px); }
+.muted { color: var(--muted); }
