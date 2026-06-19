@@ -154,7 +154,13 @@ export function CatalogClient({
       if (condition !== "all" && b.condition !== condition) return false;
       if (b.price > maxPrice) return false;
       if (q) {
-        const hay = [b.name, b.category_id, b.description, ...(b.keywords || [])]
+        const hay = [
+          b.name,
+          b.category_id,
+          categoryName(catById.get(b.category_id), locale),
+          b.description,
+          ...(b.keywords || []),
+        ]
           .join(" ")
           .toLowerCase();
         if (!q.split(/\s+/).every((w) => hay.includes(w))) return false;

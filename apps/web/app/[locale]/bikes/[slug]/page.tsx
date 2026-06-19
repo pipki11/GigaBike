@@ -12,6 +12,7 @@ import { createT, getDictionary, isLocale, type Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/Reveal";
 import { BikeCard } from "@/components/BikeCard";
 import { ProductGallery } from "@/components/product/ProductGallery";
+import { ProductJsonLd } from "@/components/ProductJsonLd";
 
 export default async function ProductPage({
   params,
@@ -58,6 +59,7 @@ export default async function ProductPage({
 
   return (
     <div className="page product">
+      <ProductJsonLd bike={bike} category={category} locale={locale} />
       <div className="wrap">
         <Link className="crumb" href={backHref}>
           <Icon name="arrow" style={{ transform: "rotate(180deg)" }} />

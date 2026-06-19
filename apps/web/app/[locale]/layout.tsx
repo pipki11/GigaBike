@@ -9,6 +9,7 @@ import { fontVariables } from "@/app/fonts";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { LangNote } from "@/components/LangNote";
+import { ShopJsonLd } from "@/components/ShopJsonLd";
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -51,6 +52,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={fontVariables}>
       <body>
+        <ShopJsonLd shop={shop} />
         <Header locale={locale} dict={dict} shop={shop} />
         <main>{children}</main>
         <Footer locale={locale} dict={dict} shop={shop} />

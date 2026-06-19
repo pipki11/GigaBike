@@ -28,14 +28,22 @@ const MAX_IMAGE_EDGE = 1800;
 const ACCEPTED_IMAGE_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/avif"]);
 
 /** A sensible starting set of search keywords from the name + category,
-    so the owner never has to brainstorm them (still fully editable). */
-function suggestKeywords(name: string, categoryId: string): string {
-  const words = name
-    .toLowerCase()
+    so the owner never has to brainstorm them (still fully editable).
+    Keeps Unicode (Georgian/Russian) letters and adds the localized category
+    name (e.g. "საბავშვო") so the on-site search matches what shoppers type. */
+function suggestKeywords(
+  name: string,
+  category: Category | undefined,
+  locale: Locale,
+): string {
+  const nameWords = name
     .split(/\s+/)
-    .map((w) => w.replace(/[^a-z0-9]/g, ""))
+    // Strip punctuation/symbols only — keep any-language letters and digits.
+    .map((w) => w.replace(/[^\p{L}\p{N}]/gu, ""))
     .filter((w) => w.length > 1);
-  return [...new Set([...words, categoryId].filter(Boolean))].join(", ");
+  const catTerms = category ? [category.id, categoryName(category, locale)] : [];
+  const all = [...nameWords, ...catTerms].map((w) => w.toLowerCase()).filter(Boolean);
+  return [...new Set(all)].join(", ");
 }
 
 type FormState = {
@@ -236,14 +244,18 @@ export function BikesManager({
     patch({
       name,
       ...(slugEdited ? {} : { slug: slugify(name) }),
-      ...(keywordsEdited || !form ? {} : { keywords: suggestKeywords(name, form.category_id) }),
+      ...(keywordsEdited || !form
+        ? {}
+        : { keywords: suggestKeywords(name, catById.get(form.category_id), loc) }),
     });
   }
 
   function onCategory(categoryId: string) {
     patch({
       category_id: categoryId,
-      ...(keywordsEdited || !form ? {} : { keywords: suggestKeywords(form.name, categoryId) }),
+      ...(keywordsEdited || !form
+        ? {}
+        : { keywords: suggestKeywords(form.name, catById.get(categoryId), loc) }),
     });
   }
 
