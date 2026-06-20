@@ -22,8 +22,10 @@ import {
 import { deleteBikeImage, uploadBikeImage, type UploadResult } from "@/app/bikes/image-actions";
 
 const MAX_IMAGES = 4;
-const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
-const TARGET_UPLOAD_BYTES = 4.7 * 1024 * 1024;
+// Vercel Functions have a fixed 4.5 MB request limit. Leave space for the
+// Server Action and multipart FormData overhead around the image itself.
+const MAX_UPLOAD_BYTES = Math.floor(3.75 * 1024 * 1024);
+const TARGET_UPLOAD_BYTES = Math.floor(3.5 * 1024 * 1024);
 const MAX_IMAGE_EDGE = 1800;
 const ACCEPTED_IMAGE_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/avif"]);
 

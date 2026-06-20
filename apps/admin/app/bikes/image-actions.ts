@@ -4,7 +4,9 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient, hasServiceKey } from "@/lib/supabase/admin";
 
 const BUCKET = "bike-images";
-const MAX_BYTES = 5 * 1024 * 1024;
+// Must remain below Vercel's 4.5 MB function request ceiling after FormData
+// and Server Action overhead are included.
+const MAX_BYTES = Math.floor(3.75 * 1024 * 1024);
 const EXT_BY_TYPE: Record<string, string> = {
   "image/png": "png",
   "image/jpeg": "jpg",

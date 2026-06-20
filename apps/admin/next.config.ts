@@ -16,6 +16,13 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@gigabike/ui", "@gigabike/supabase"],
+  experimental: {
+    // Image uploads use a Server Action. Keep this below Vercel's 4.5 MB
+    // function payload ceiling while allowing the client-compressed images.
+    serverActions: {
+      bodySizeLimit: "4mb",
+    },
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
